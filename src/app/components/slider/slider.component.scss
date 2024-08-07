@@ -1,0 +1,13 @@
+.home-slider{
+  img {
+    max-height: 700px;
+    object-fit: cover;
+    opacity: 0.5;
+  }
+  .card-img-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50px;
+  }
+
+}
