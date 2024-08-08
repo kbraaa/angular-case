@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TestComponent } from './test/test.component';
 import {SliderComponent} from "./slider/slider.component";
 import {MatCardModule} from "@angular/material/card";
 import {HeaderComponent} from "./header/header.component";
@@ -15,7 +14,6 @@ import {DetailCardComponent} from "./detail-card/detail-card.component";
 
 @NgModule({
   declarations: [
-    TestComponent,
     SliderComponent,
     HeaderComponent,
     FooterComponent,
@@ -23,7 +21,6 @@ import {DetailCardComponent} from "./detail-card/detail-card.component";
     DetailCardComponent
   ],
   exports: [
-    TestComponent,
     SliderComponent,
     HeaderComponent,
     FooterComponent,
