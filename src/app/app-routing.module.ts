@@ -2,8 +2,9 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './page/home/home.component';
 import { ContactComponent } from './page/contact/contact.component';
-import {ProductDetailComponent} from "./page/product-detail/product-detail.component";
 import {SepetComponent} from "./page/sepet/sepet.component";
+import {ProductDetailComponent} from "./components/product-detail/product-detail.component";
+import {ProductSingleComponent} from "./page/product-single/product-single.component";
 
 const routes: Routes = [
   {
@@ -15,8 +16,8 @@ const routes: Routes = [
     component: ContactComponent,
   },
   {
-    path: 'product-detail',
-    component: ProductDetailComponent,
+    path: 'product-single',
+    component: ProductSingleComponent,
   },
   {
     path: 'sepet',

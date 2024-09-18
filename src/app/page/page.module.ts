@@ -4,20 +4,20 @@ import { ContactComponent } from './contact/contact.component';
 import {MatCardModule} from "@angular/material/card";
 import {SepetComponent} from "./sepet/sepet.component";
 import {ComponentsModule} from "../components/components.module";
-import {ProductDetailComponent} from "./product-detail/product-detail.component";
 import {HomeComponent} from "./home/home.component";
+import { ProductSingleComponent } from './product-single/product-single.component';
 
 @NgModule({
   declarations: [
     ContactComponent,
     SepetComponent,
-    ProductDetailComponent,
     HomeComponent,
+    ProductSingleComponent,
   ],
   imports: [
     CommonModule,
     MatCardModule,
-    ComponentsModule
+    ComponentsModule,
   ]
 })
 export class PageModule { }

@@ -10,6 +10,8 @@ import {CardComponent} from "./card/card.component";
 import {MatButtonModule} from "@angular/material/button";
 import {AppRoutingModule} from "../app-routing.module";
 import {DetailCardComponent} from "./detail-card/detail-card.component";
+import { ProductComponent } from './product/product.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import {DetailCardComponent} from "./detail-card/detail-card.component";
     HeaderComponent,
     FooterComponent,
     CardComponent,
-    DetailCardComponent
+    DetailCardComponent,
+    ProductComponent,
+    ProductDetailComponent
   ],
   exports: [
     SliderComponent,
@@ -26,6 +30,8 @@ import {DetailCardComponent} from "./detail-card/detail-card.component";
     FooterComponent,
     CardComponent,
     DetailCardComponent,
+    ProductComponent,
+    ProductDetailComponent,
   ],
   imports: [
     CommonModule,
