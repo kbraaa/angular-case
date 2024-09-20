@@ -37,6 +37,7 @@ import { ProductRelatedComponent } from './product-related/product-related.compo
     ProductComponent,
     ProductDetailComponent,
     FiltersComponent,
+    ProductRelatedComponent
   ],
   imports: [
     CommonModule,

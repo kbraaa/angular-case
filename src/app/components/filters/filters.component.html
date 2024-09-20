@@ -1,8 +1,15 @@
-<!--
-<mat-form-field>
-  <mat-label>Fitre</mat-label>
-  <mat-select>
-    <mat-option >bir</mat-option>
-  </mat-select>
-</mat-form-field>
--->
+<div class="container pt-5">
+  <div class="row justify-content-end">
+    <div class="col-3">
+      <mat-form-field>
+        <mat-label>Sıralama</mat-label>
+        <mat-select (selectionChange)="onSortChange($event)">
+          <mat-option value="default">Varsayılan</mat-option>
+          <mat-option value="low-to-high">En düşük fiyat</mat-option>
+          <mat-option value="high-to-low">En yüksek fiyat</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+</div>

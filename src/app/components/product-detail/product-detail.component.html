@@ -1,5 +1,5 @@
 <mat-card class="card-detail card-body" appearance="outlined">
-  <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  <img mat-card-xl-image src="{{ product?.images }}" alt="{{ product?.title }}">
   <mat-card-content>
     <mat-card-header>
       <mat-card-title-group>
@@ -7,8 +7,8 @@
         <mat-card-subtitle>Ürün Puanı: {{product?.rating}}</mat-card-subtitle>
       </mat-card-title-group>
       <mat-card-title-group class="justify-content-end">
-        <mat-card-title><span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">{{product?.price}}</span></mat-card-title>
-        <mat-card-title> <span  class="fs-5">{{product?.discountPercentage}}</span></mat-card-title>
+        <mat-card-title><span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">{{product?.price}} TL</span></mat-card-title>
+        <mat-card-title> <span  class="fs-5">{{product?.discountPercentage}} TL</span></mat-card-title>
       </mat-card-title-group>
 
     </mat-card-header>
@@ -21,10 +21,30 @@
   </mat-card-content>
 </mat-card>
 
-<div *ngFor="let item of relatedProducts">
-  <h3>{{ item.title }}</h3>
-  <p>Category: {{ item.category }}</p>
-  <p>Price: {{ item.price | currency }}</p>
-  <img src="{{ item.images[0] }}" alt="{{ item.title }}">
+
+<div class="container py-5">
+  <div class="row">
+    <h1 class="border-bottom pb-3"><strong>Benzer Ürünler</strong></h1>
+  </div>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+    <mat-card class="text-center"  *ngFor="let product of relatedProducts">
+      <img mat-card-image src="{{ product.images }}" alt="{{ product.title }}">
+      <mat-card-content>
+        <mat-card-title class="mb-3 fs-6">
+          <a routerLink='/product-single/{{product.id}}'>{{ product.title }}</a>
+        </mat-card-title>
+        <span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">{{ product.price}} TL</span>
+        <span  class="fs-5">{{ product.discountPercentage }} TL</span>
+        <mat-card-actions class="mt-5">
+          <button mat-fab extended>
+            <mat-icon>shopping_cart</mat-icon> SEPETE EKLE
+          </button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
 </div>
 
