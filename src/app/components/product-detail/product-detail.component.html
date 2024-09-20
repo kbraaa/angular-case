@@ -3,20 +3,28 @@
   <mat-card-content>
     <mat-card-header>
       <mat-card-title-group>
-        <mat-card-title>Ürün adı</mat-card-title>
-        <mat-card-subtitle>Ürün Puanı: 5.2</mat-card-subtitle>
+        <mat-card-title>{{product?.title}}</mat-card-title>
+        <mat-card-subtitle>Ürün Puanı: {{product?.rating}}</mat-card-subtitle>
       </mat-card-title-group>
       <mat-card-title-group class="justify-content-end">
-        <mat-card-title><span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">670.9 TL</span></mat-card-title>
-        <mat-card-title> <span  class="fs-5">429.9 TL</span></mat-card-title>
+        <mat-card-title><span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">{{product?.price}}</span></mat-card-title>
+        <mat-card-title> <span  class="fs-5">{{product?.discountPercentage}}</span></mat-card-title>
       </mat-card-title-group>
 
     </mat-card-header>
-    <p class="p-3">---ÜRÜN AÇIKLAMASI--- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum, ea eos et expedita id illum in libero magnam natus, necessitatibus nemo nihil optio possimus praesentium quis reiciendis temporibus veritatis?</p>
+    <p class="p-3">{{product?.description}}</p>
     <mat-card-actions class="mt-4">
       <button mat-fab extended>
-        <mat-icon>shopping_cart</mat-icon> SEPETTEN ÇIKAR
+        <mat-icon>shopping_cart</mat-icon> SEPETE EKLE
       </button>
     </mat-card-actions>
   </mat-card-content>
 </mat-card>
+
+<div *ngFor="let item of relatedProducts">
+  <h3>{{ item.title }}</h3>
+  <p>Category: {{ item.category }}</p>
+  <p>Price: {{ item.price | currency }}</p>
+  <img src="{{ item.images[0] }}" alt="{{ item.title }}">
+</div>
+
