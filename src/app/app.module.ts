@@ -4,15 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {ComponentsModule} from "./components/components.module";
-import {PageModule} from "./page/page.module";
 import {HttpClientModule} from "@angular/common/http";
+import {FooterModule} from "./components/footer/footer.module";
+import {ProductModule} from "./components/product/product.module";
+import {HeaderModule} from "./components/header/header.module";
+import {ContactModule} from "./page/contact/contact.module";
+import {HomeModule} from "./page/home/home.module";
+import {ProductDetailModule} from "./components/product-detail/product-detail.module";
+import {ProductSingleModule} from "./page/product-single/product-single.module";
 
 @NgModule({
   declarations: [
@@ -23,15 +22,13 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatBadgeModule,
-    MatCardModule,
-    MatFormFieldModule,
-    PageModule,
-    ComponentsModule
-
+    FooterModule,
+    ProductModule,
+    HeaderModule,
+    ContactModule,
+    HomeModule,
+    ProductDetailModule,
+    ProductSingleModule
   ],
   providers: [],
   exports: [],

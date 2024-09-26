@@ -1,5 +1,6 @@
 <app-slider></app-slider>
-<app-filters></app-filters>
-<div class="container py-5">
-    <app-product class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4"></app-product>
+<app-filters (asd)="setSelectedValue($event)"></app-filters>
+<div class="container py-5" >
+  <app-product [productList]="sortedProducts" [selectedValue]="selectedSortingValue" class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4"></app-product>
 </div>
+

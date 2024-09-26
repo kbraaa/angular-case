@@ -1,8 +1,8 @@
-<mat-card class="text-center"  *ngFor="let product of products">
-  <img mat-card-image src="{{ product.images }}" alt="{{ product.title }}">
+<mat-card class="text-center"  *ngFor="let product of productList">
+  <img mat-card-image [src]="product.images" [alt]="product.title">
   <mat-card-content>
     <mat-card-title class="mb-3 fs-6">
-      <a routerLink='/product-single/{{product.id}}'>{{ product.title }}</a>
+      <a [routerLink]='"/product-single/" + product.id'>{{product.title}}</a>
     </mat-card-title>
     <span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">{{ product.price }} TL</span>
     <span  class="fs-5">{{ product.discountPercentage }} TL</span>
