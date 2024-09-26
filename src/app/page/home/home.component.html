@@ -1,6 +1,23 @@
 <app-slider></app-slider>
-<app-filters (asd)="setSelectedValue($event)"></app-filters>
-<div class="container py-5" >
-  <app-product [productList]="sortedProducts" [selectedValue]="selectedSortingValue" class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4"></app-product>
-</div>
 
+<div class="container pt-5">
+  <div class="row justify-content-end">
+    <div class="col-3">
+      <mat-form-field>
+        <mat-label>Sıralama</mat-label>
+        <mat-select (selectionChange)="setSelectedValue($event.value)">
+          <mat-option value="default">Varsayılan</mat-option>
+          <mat-option value="low-to-high">En düşük fiyat</mat-option>
+          <mat-option value="high-to-low">En yüksek fiyat</mat-option>
+          <mat-option value="high-to-low">En yüksek fiyat</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <app-product [productList]="sortedProducts"
+                 [selectedValue]="selectedSortingValue"
+                 class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4"></app-product>
+  </div>
+</div>

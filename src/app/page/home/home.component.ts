@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../../services/product.service";
-import {Product} from "../../models/product.model";
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from "../../services/product.service";
+import { Product } from "../../models/product.model";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-home',
@@ -10,34 +11,31 @@ import {Product} from "../../models/product.model";
 export class HomeComponent implements OnInit {
   products: Product[] = [];
   sortedProducts: Product[] = [];
+  selectedSortingValue: 'low-to-high' | 'high-to-low' | 'default' = 'default';
+  cartItems: Product[] = [];
 
-
-  selectedSortingValue = '';
-
-  constructor(private productService: ProductService) {}
-
-  setSelectedValue(value: any): void{
-    console.log("setSelectedValue", value);
-    this.selectedSortingValue = value;
-    this.sortingProducts();
-  }
-
-  sortingProducts(): void{
-    if (this.selectedSortingValue === 'low-to-high') {
-      this.sortedProducts = [...this.products].sort((num1, num2) => num1.discountPercentage - num2.discountPercentage);
-    } else if (this.selectedSortingValue === 'high-to-low') {
-      this.sortedProducts = [...this.products].sort((num1, num2) => num2.discountPercentage - num1.discountPercentage);
-    } else {
-      this.sortedProducts = [...this.products];
-    }
-  }
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getAllProducts()
-      .subscribe(products => {
-        this.products = products;
-        this.sortedProducts = [...this.products];
+    this.productService.getAllProducts().subscribe(products => {
+      this.products = products;
+      this.sortedProducts = [...this.products];
+      this.cartService.cart$.subscribe(cartItems => {
+        this.cartItems = cartItems;
       });
+    });
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
+  }
+
+  setSelectedValue(value: 'low-to-high' | 'high-to-low' | 'default'): void {
+
+    this.selectedSortingValue = value;
+    this.productService.sortProducts(this.selectedSortingValue);
   }
 
 

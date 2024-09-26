@@ -12,10 +12,13 @@ import {ContactModule} from "./page/contact/contact.module";
 import {HomeModule} from "./page/home/home.module";
 import {ProductDetailModule} from "./components/product-detail/product-detail.module";
 import {ProductSingleModule} from "./page/product-single/product-single.module";
+import {CartModule} from "./page/cart/cart.module";
+import { CartListComponent } from './components/cart-list/cart-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CartListComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {ProductSingleModule} from "./page/product-single/product-single.module";
     ContactModule,
     HomeModule,
     ProductDetailModule,
-    ProductSingleModule
+    ProductSingleModule,
+    CartModule
   ],
   providers: [],
   exports: [],
