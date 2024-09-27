@@ -3,6 +3,7 @@ import { Product } from "../../models/product.model";
 import { ProductService } from "../../services/product.service";
 import { ActivatedRoute } from "@angular/router";
 import { CartService } from "../../services/cart.service";
+import {switchMap} from "rxjs";
 
 @Component({
   selector: 'app-product-detail',
@@ -20,32 +21,26 @@ export class ProductDetailComponent implements OnInit {
               private cartService: CartService) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      const id = +params['id'];
-
-      this.productService.getProductDetail(id).subscribe(
-        (data: Product) => {
-          this.product = data;
-          this.loading = false;
-          this.loading = true;
-
-          const categoryName = data.category;
-
-          this.productService.getCategory(categoryName).subscribe(
-            (categoryData) => {
-              this.relatedProducts = categoryData.products;
-              this.loading = false;
-            },
-            (error) => {
-              console.error('Error fetching related products:', error);
-            }
-          );
-        },
-        (error) => {
-          console.error('Error fetching product details:', error);
-        }
-      );
-    });
+    this.route.params.pipe(
+      switchMap(params => {
+        const id = +params['id'];
+        return this.productService.getProductDetail(id).pipe(
+          switchMap((data: Product) => {
+            this.product = data;
+            const categoryName = data.category;
+            return this.productService.getCategory(categoryName);
+          })
+        );
+      })
+    ).subscribe(
+      (categoryData) => {
+        this.relatedProducts = categoryData.products;
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error fetching product details or related products:', error);
+      }
+    );
 
     this.cartService.cart$.subscribe(cartItems => {
       this.cartItems = cartItems;

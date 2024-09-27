@@ -41,8 +41,6 @@ export class ProductService {
     } else {
       sortedProducts = [...currentProducts];
     }
-    console.log(sortedProducts);
-
     this.productsSubject.next(sortedProducts);
   }
 }

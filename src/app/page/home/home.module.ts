@@ -18,7 +18,6 @@ import {AppRoutingModule} from "../../app-routing.module";
     AppRoutingModule,
     ProductModule,
     SliderModule,
-    FiltersModule,
     MatSelectModule,
     MatCardModule,
     MatIconModule
