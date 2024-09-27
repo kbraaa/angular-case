@@ -1,3 +1,11 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center">
+    <div *ngIf="loading" class="loading-indicator">
+      <h2>Yükleniyor...</h2>
+    </div>
+  </div>
+</div>
+
 <mat-card class="card-detail card-body" appearance="outlined">
   <img mat-card-xl-image  [src]="product?.images" [alt]="product?.title">
   <mat-card-content>

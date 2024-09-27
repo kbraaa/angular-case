@@ -12,6 +12,7 @@ export class CartService {
   addToCart(product: Product): void {
     const currentCart = this.cartSubject.getValue();
     this.cartSubject.next([...currentCart, product]);
+
   }
 
   removeFromCart(productId: number): void {
@@ -19,6 +20,8 @@ export class CartService {
     const updatedCart = currentCart.filter(product => product.id !== productId);
     this.cartSubject.next(updatedCart);
   }
+
+
 
 
 }

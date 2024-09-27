@@ -13,6 +13,7 @@ export class ProductDetailComponent implements OnInit {
   product: Product | undefined;
   relatedProducts: Product[] = [];
   cartItems: Product[] = [];
+  loading: boolean = true;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
@@ -25,12 +26,15 @@ export class ProductDetailComponent implements OnInit {
       this.productService.getProductDetail(id).subscribe(
         (data: Product) => {
           this.product = data;
+          this.loading = false;
+          this.loading = true;
 
           const categoryName = data.category;
 
           this.productService.getCategory(categoryName).subscribe(
             (categoryData) => {
               this.relatedProducts = categoryData.products;
+              this.loading = false;
             },
             (error) => {
               console.error('Error fetching related products:', error);

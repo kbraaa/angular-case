@@ -4,6 +4,7 @@ import {HeaderComponent} from "./header.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {AppRoutingModule} from "../../app-routing.module";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {AppRoutingModule} from "../../app-routing.module";
     CommonModule,
     AppRoutingModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatBadgeModule
   ],
   exports: [
     HeaderComponent

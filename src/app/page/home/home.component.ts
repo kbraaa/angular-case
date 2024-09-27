@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   sortedProducts: Product[] = [];
   selectedSortingValue: 'low-to-high' | 'high-to-low' | 'default' = 'default';
   cartItems: Product[] = [];
+  loading: boolean = true;
 
   constructor(
     private cartService: CartService,
@@ -22,6 +23,8 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProducts().subscribe(products => {
       this.products = products;
       this.sortedProducts = [...this.products];
+      this.loading = false;
+
       this.productService.products$.subscribe(sortedProducts => {
         this.sortedProducts = sortedProducts;
       });
@@ -32,9 +35,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  /*
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
-  }
+  }*/
 
   setSelectedValue(value: 'low-to-high' | 'high-to-low' | 'default'): void {
     this.selectedSortingValue = value;

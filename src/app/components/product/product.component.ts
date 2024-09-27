@@ -11,13 +11,15 @@ export class ProductComponent implements OnInit {
   @Input() productList: Product[] = [];
   @Input() selectedValue: string = '';
   cartItems: Product[] = [];
+  cartItemsCount: number = 0;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
      this.cartService.cart$.subscribe(cartItems => {
       this.cartItems = cartItems;
-    });
+       this.cartItemsCount = cartItems.length;
+     });
   }
 
   addToCart(product: Product): void {
