@@ -10,9 +10,7 @@
        <button (click)="isProductInCart(product.id) ? removeItem(product.id) : addToCart(product)" mat-fab extended>
          <mat-icon>shopping_cart</mat-icon>  {{ isProductInCart(product.id) ? 'Sepetten Çıkar' : 'Sepete Ekle' }}
        </button>
-
     </mat-card-actions>
-
   </mat-card-content>
 </mat-card>
 

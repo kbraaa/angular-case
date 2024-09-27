@@ -34,7 +34,6 @@ export class ProductService {
   sortProducts(order: 'low-to-high' | 'high-to-low' | 'default'): void {
     const currentProducts = this.productsSubject.getValue();
     let sortedProducts: Product[];
-
     if (order === 'low-to-high') {
       sortedProducts = [...currentProducts].sort((a, b) => a.discountPercentage - b.discountPercentage);
     } else if (order === 'high-to-low') {
@@ -42,6 +41,7 @@ export class ProductService {
     } else {
       sortedProducts = [...currentProducts];
     }
+    console.log(sortedProducts);
 
     this.productsSubject.next(sortedProducts);
   }
