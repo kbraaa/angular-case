@@ -1,0 +1,17 @@
+.mat-mdc-card{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.mdc-card {
+  .mat-mdc-card-title a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 400;
+    font-size: 19px;
+  }
+
+  .mat-mdc-card-content, .mat-mdc-card-title{
+    text-align: start;
+  }
+}

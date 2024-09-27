@@ -28,12 +28,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /*
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
-  }
+  }*/
 
   setSelectedValue(value: 'low-to-high' | 'high-to-low' | 'default'): void {
-
     this.selectedSortingValue = value;
     this.productService.sortProducts(this.selectedSortingValue);
   }

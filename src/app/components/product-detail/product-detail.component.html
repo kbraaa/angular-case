@@ -14,9 +14,14 @@
     </mat-card-header>
     <p class="p-3">{{product?.description}}</p>
     <mat-card-actions class="mt-4 justify-content-start">
-      <button mat-fab extended>
-        <mat-icon>shopping_cart</mat-icon> SEPETE EKLE
-      </button>
+      <mat-card-actions class="mt-4 justify-content-start">
+        <button *ngIf="product"
+                (click)="isProductInCart(product.id) ? removeItem(product.id) : addToCart(product)"
+                mat-fab extended>
+          <mat-icon>shopping_cart</mat-icon>
+          {{ isProductInCart(product.id) ? 'Sepetten Çıkar' : 'Sepete Ekle' }}
+        </button>
+      </mat-card-actions>
     </mat-card-actions>
   </mat-card-content>
 </mat-card>
@@ -37,8 +42,8 @@
         <span class="fs-6 text-secondary text-decoration-line-through pe-3 fw-light">{{ product.price}} TL</span>
         <span  class="fs-5">{{ product.discountPercentage }} TL</span>
         <mat-card-actions class="mt-5">
-          <button mat-fab extended>
-            <mat-icon>shopping_cart</mat-icon> SEPETE EKLE
+          <button (click)="isProductInCart(product.id) ? removeItem(product.id) : addToCart(product)" mat-fab extended>
+            <mat-icon>shopping_cart</mat-icon>  {{ isProductInCart(product.id) ? 'Sepetten Çıkar' : 'Sepete Ekle' }}
           </button>
         </mat-card-actions>
       </mat-card-content>
