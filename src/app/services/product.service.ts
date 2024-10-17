@@ -10,6 +10,7 @@ import { Product } from '../models/product.model';
 export class ProductService {
   private apiUrl = 'https://dummyjson.com/products/';
   private productsSubject = new BehaviorSubject<Product[]>([]);
+  private currentProductsSubject = new BehaviorSubject<Product[]>([]);
   products$ = this.productsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -18,6 +19,7 @@ export class ProductService {
     return this.http.get<{ products: Product[] }>(this.apiUrl + '?delay=1000').pipe(
       map(res => {
         this.productsSubject.next(res.products);
+        this.currentProductsSubject.next(res.products);
          return res.products;
       })
     );
@@ -32,7 +34,7 @@ export class ProductService {
   }
 
   sortProducts(order: 'low-to-high' | 'high-to-low' | 'default'): void {
-    const currentProducts = this.productsSubject.getValue();
+    const currentProducts = this.currentProductsSubject.getValue();
     let sortedProducts: Product[];
     if (order === 'low-to-high') {
       sortedProducts = [...currentProducts].sort((a, b) => a.discountPercentage - b.discountPercentage);

@@ -13,24 +13,18 @@ import {switchMap} from "rxjs";
 export class ProductDetailComponent implements OnInit {
   product: Product | undefined;
   relatedProducts: Product[] = [];
-  cartItems: Product[] = [];
   loading: boolean = true;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute,
-              private cartService: CartService) {}
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.pipe(
-      switchMap(params => {
-        const id = +params['id'];
-        return this.productService.getProductDetail(id).pipe(
-          switchMap((data: Product) => {
-            this.product = data;
-            const categoryName = data.category;
-            return this.productService.getCategory(categoryName);
-          })
-        );
+      switchMap(params => this.productService.getProductDetail(+params['id'])),
+      switchMap((data: Product) => {
+        this.product = data;
+        const categoryName = data.category;
+        return this.productService.getCategory(categoryName);
       })
     ).subscribe(
       (categoryData) => {
@@ -41,36 +35,6 @@ export class ProductDetailComponent implements OnInit {
         console.error('Error fetching product details or related products:', error);
       }
     );
-
-    this.cartService.cart$.subscribe(cartItems => {
-      this.cartItems = cartItems;
-    });
   }
-
-  addToCart(product: Product): void {
-    this.cartService.addToCart(product);
-  }
-
-  isProductInCart(productId: number): boolean {
-    return this.cartItems.some(item => item.id === productId);
-  }
-
-  removeItem(productId: number): void {
-    this.cartService.removeFromCart(productId);
-  }
-
-  addToCartOrRemove(): void {
-    if (this.product) {
-      if (this.isProductInCart(this.product.id)) {
-        this.removeItem(this.product.id);
-      } else {
-        this.addToCart(this.product);
-      }
-    }
-  }
-
-
-
-
 
 }

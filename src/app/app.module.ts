@@ -26,10 +26,7 @@ import {CartModule} from "./page/cart/cart.module";
     FooterModule,
     ProductModule,
     HeaderModule,
-    ContactModule,
     HomeModule,
-    ProductDetailModule,
-    ProductSingleModule,
     CartModule
   ],
   providers: [],

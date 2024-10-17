@@ -20,6 +20,9 @@ export class CartService {
     this.cartSubject.next(updatedCart);
   }
 
+  isProductInCart(productId: number): boolean {
+    return this.cartSubject.getValue().some(item => item.id === productId);
+  }
 
 
 

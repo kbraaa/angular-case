@@ -15,7 +15,7 @@
     </li>
   </ul>
 
-  <a class="text-dark" matBadge="{{cartItemsCount}}" matBadgePosition="before">
+  <a class="text-dark" matBadge="{{(cartItemsCount | async)}}" matBadgePosition="before">
     <mat-icon fontIcon="shopping_cart"></mat-icon>
   </a>
 
