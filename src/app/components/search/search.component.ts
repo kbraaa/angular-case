@@ -18,7 +18,6 @@ export class SearchComponent implements OnInit {
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    this.inputControl = new FormControl('');
 
     this.inputControl.valueChanges.pipe(
       debounceTime(300),
