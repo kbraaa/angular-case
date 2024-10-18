@@ -5,18 +5,20 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {AppRoutingModule} from "../../app-routing.module";
 import {MatBadgeModule} from "@angular/material/badge";
+import {SearchModule} from "../search/search.module";
 
 @NgModule({
   declarations: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatBadgeModule
-  ],
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatBadgeModule,
+        SearchModule
+    ],
   exports: [
     HeaderComponent
   ]

@@ -1,0 +1,18 @@
+<div>
+  <input [formControl]="inputControl" placeholder="Search products..." />
+</div>
+
+<div *ngIf="(searchResults$ | async)?.length; else noResults">
+  <div *ngFor="let product of searchResults$ | async">
+    <p>{{ product.title }} - {{ product.price }}</p>
+  </div>
+</div>
+
+<ng-template #noResults>
+  <p>Arama Yok</p>
+</ng-template>
+
+<h3>Son Aramalar</h3>
+<ul>
+  <li *ngFor="let search of recentSearches">{{ search }}</li>
+</ul>
