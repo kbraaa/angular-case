@@ -12,33 +12,32 @@ import { Product } from "../../models/product.model";
 })
 export class SearchComponent implements OnInit {
   inputControl: FormControl = new FormControl();
-  searchResults$: Observable<Product[]> = of([]); // Başlangıçta boş bir observable
-  recentSearches: string[] = []; // Son aramalar dizisi
+  searchResults$: Observable<Product[]> = of([]);
+  recentSearches: string[] = [];
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
     this.inputControl = new FormControl('');
 
-    // inputControl için valueChanges dinleyin
     this.inputControl.valueChanges.pipe(
-      debounceTime(300), // 300 ms gecikme
+      debounceTime(300),
       switchMap((inputValue) => {
         if (inputValue && inputValue.length >= 3) {
           return this.searchService.getSearch(inputValue).pipe(
             tap(data => {
-              console.log('API’den Gelen Veri:', data); // API'den gelen veriyi konsola yazdır
+              console.log('API’den Gelen Veri:', data);
               if (!this.recentSearches.includes(inputValue)) {
-                this.recentSearches.push(inputValue); // Yeni aramayı son aramalar listesine ekle
+                this.recentSearches.push(inputValue);
               }
             })
           );
         } else {
-          return of([]); // Yeterli uzunlukta değilse boş bir dizi döndür
+          return of([]);
         }
       })
     ).subscribe((results) => {
-      this.searchResults$ = of(results); // Sonuçları ayarlayın
+      this.searchResults$ = of(results);
     });
   }
 }
