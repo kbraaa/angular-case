@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { SearchService } from "../../services/search.service";
-import { Observable, of } from "rxjs";
+import {distinctUntilChanged, Observable, of} from "rxjs";
 import { switchMap, tap, debounceTime } from "rxjs/operators";
 import { Product } from "../../models/product.model";
 
@@ -17,18 +17,16 @@ export class SearchComponent implements OnInit {
 
   constructor(private searchService: SearchService) {}
 
-  ngOnInit() {
 
+  ngOnInit() {
     this.inputControl.valueChanges.pipe(
       debounceTime(300),
+      // distinctUntilChanged(),
       switchMap((inputValue) => {
-        if (inputValue && inputValue.length >= 3) {
+        if (inputValue && inputValue.length >= 3 && !this.recentSearches.includes(inputValue.trim())) {
           return this.searchService.getSearch(inputValue).pipe(
             tap(data => {
-              console.log('API’den Gelen Veri:', data);
-              if (!this.recentSearches.includes(inputValue)) {
-                this.recentSearches.push(inputValue);
-              }
+              this.recentSearches.push(inputValue);
             })
           );
         } else {
@@ -39,4 +37,8 @@ export class SearchComponent implements OnInit {
       this.searchResults$ = of(results);
     });
   }
+
+
+
+
 }

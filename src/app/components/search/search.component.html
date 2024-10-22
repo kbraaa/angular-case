@@ -1,18 +1,25 @@
-<div>
-  <input [formControl]="inputControl" placeholder="Search products..." />
-</div>
-
-<div class="searchContent">
-  <div *ngIf="(searchResults$ | async)?.length;">
-    <div *ngFor="let product of searchResults$ | async">
-      <p>{{ product.title }} - {{ product.price }}</p>
-    </div>
+<section class="searchInput">
+  <div>
+    <input [formControl]="inputControl" placeholder="Ürün ara..." />
   </div>
 
-  <ng-template>
-    <h3>Son Aramalar</h3>
-  </ng-template>
-  <ul>
-    <li class="deneme" *ngFor="let search of recentSearches">{{ search }}</li>
-  </ul>
-</div>
+  <mat-card *ngIf="(searchResults$ | async)?.length;">
+    <mat-card-content >
+      <div class="searchContent">
+          <div *ngFor="let product of searchResults$ | async">
+            <p>
+              <span class="fs-5">{{ product.title }} TL</span> -
+              <span class="fs-5">{{ product.discountPercentage }} TL</span>
+            </p>
+          </div>
+
+        <mat-card-footer>
+          <h3 class="mb-1 fs-4 fw-bold">Son Aramalar</h3>
+          <ul>
+            <li class="deneme" *ngFor="let search of recentSearches">{{ search }}</li>
+          </ul>
+        </mat-card-footer>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
