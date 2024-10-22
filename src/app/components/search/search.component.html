@@ -16,7 +16,7 @@
         <mat-card-footer>
           <h3 class="mb-1 fs-4 fw-bold">Son Aramalar</h3>
           <ul>
-            <li class="deneme" *ngFor="let search of recentSearches">{{ search }}</li>
+            <li *ngFor="let search of recentSearches" (click)="onSearchClick(search)">{{ search }}</li>
           </ul>
         </mat-card-footer>
       </div>
