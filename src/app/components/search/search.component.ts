@@ -39,11 +39,8 @@
 
     onSearchClick(search: string) {
       this.inputControl.setValue(search);
-      this.searchService.getSearch(search).pipe(
-        tap(data => {
-          this.recentSearches.push(search);
-        })
-      ).subscribe((results) => {
+      this.searchService.getSearch(search).pipe()
+        .subscribe((results) => {
         this.searchResults$ = of(results);
       });
     }
