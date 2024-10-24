@@ -1,7 +1,7 @@
   import { Component, OnInit } from '@angular/core';
   import { FormControl } from "@angular/forms";
   import { SearchService } from "../../services/search.service";
-  import {distinctUntilChanged, Observable, of} from "rxjs";
+  import {filter, Observable, of} from "rxjs";
   import { switchMap, tap, debounceTime } from "rxjs/operators";
   import { Product } from "../../models/product.model";
 
@@ -11,33 +11,31 @@
     styleUrls: ['./search.component.scss']
   })
   export class SearchComponent implements OnInit {
-    inputControl: FormControl = new FormControl();
+    inputControl: FormControl = new FormControl();   //form builder - form group
     searchResults$: Observable<Product[]> = of([]);
     recentSearches: string[] = [];
 
     constructor(private searchService: SearchService) {}
 
-    ngOnInit() {
+    ngOnInit() : void  {
       this.inputControl.valueChanges.pipe(
         debounceTime(300),
-        // distinctUntilChanged(),
+        filter((inputValue)=>{
+          return inputValue.length >= 3 && !this.recentSearches.includes(inputValue.trim());
+        }),
         switchMap((inputValue) => {
-          if (inputValue && inputValue.length >= 3 && !this.recentSearches.includes(inputValue.trim())) {
-            return this.searchService.getSearch(inputValue).pipe(
-              tap(data => {
-                this.recentSearches.push(inputValue);
-              })
-            );
-          } else {
-            return of([]);
-          }
+          return this.searchService.getSearch(inputValue).pipe(
+            tap(data => {
+              this.recentSearches.push(inputValue.trim());
+            })
+          );
         })
       ).subscribe((results) => {
         this.searchResults$ = of(results);
       });
     }
 
-    onSearchClick(search: string) {
+    onSearchClick(search: string) : void {
       this.inputControl.setValue(search);
       this.searchService.getSearch(search).pipe()
         .subscribe((results) => {
