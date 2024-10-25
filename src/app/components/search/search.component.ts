@@ -20,13 +20,11 @@
     ngOnInit() : void  {
       this.inputControl.valueChanges.pipe(
         debounceTime(300),
-        filter((inputValue)=>{
-          return inputValue.length >= 3 && !this.recentSearches.includes(inputValue.trim());
-        }),
         switchMap((inputValue) => {
           return this.searchService.getSearch(inputValue).pipe(
             tap(data => {
               this.recentSearches.push(inputValue.trim());
+              console.log(this.recentSearches);
             })
           );
         })
@@ -35,12 +33,8 @@
       });
     }
 
-    onSearchClick(search: string) : void {
-      this.inputControl.setValue(search);
-      this.searchService.getSearch(search).pipe()
-        .subscribe((results) => {
-        this.searchResults$ = of(results);
-      });
+    onSearchClick() : void {
+      this.searchResults$ = this.searchService.getSearch(this.inputControl.value)
     }
 
 
