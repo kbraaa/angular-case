@@ -14,7 +14,6 @@
     inputControl: FormControl = new FormControl();
     searchResults$: Observable<Product[]> = of([]);
     recentSearches$: Observable<string[]>;
-    isInputFocused: boolean = false;  // Odak durumunu takip et
 
 
     constructor(private searchService: SearchService) {
@@ -41,13 +40,4 @@
     this.searchResults$ = this.searchService.getSearch(searchKeyword);
   }
 
-  onFocus(): void {
-    this.isInputFocused = true;
-    console.log("onFocus Çalıştı");
-  }
-
-  onBlur(): void {
-    this.isInputFocused = false;
-    console.log("onBlur Çalıştı");
-  }
 }

@@ -1,10 +1,10 @@
 <section class="searchInput">
   <div>
-    <input [formControl]="inputControl" (focus)="onFocus()" (blur)="onBlur()" placeholder="Ürün ara..." />
+    <input [formControl]="inputControl" placeholder="Ürün ara..." />
   </div>
 
   <ng-container *ngIf="searchResults$ | async as searchResults">
-      <mat-card *ngIf="isInputFocused && searchResults.length >= 1" class="">
+      <mat-card *ngIf="searchResults.length >= 1" class="">
         <mat-card-content>
           <div class="searchContent">
             <div *ngFor="let product of searchResults">

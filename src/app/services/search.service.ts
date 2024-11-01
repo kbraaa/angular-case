@@ -24,7 +24,8 @@ export class SearchService {
   getSearch(keyword: string): Observable<Product[]> {
 
     if (keyword.length < 3) return of([]);
-    const cachedResult = this.inputValue.getValue().find(entry => entry.keyword === keyword);
+    const cachedResult = this.inputValue.getValue()
+      .find(entry => entry.keyword === keyword);
 
     if (cachedResult) {
       this.updateRecentSearches(keyword);
@@ -51,7 +52,6 @@ export class SearchService {
 
     let currentSearches = this.recentSearches.getValue();
     currentSearches = currentSearches.filter(term => term !== trimmedTerm);
-
     currentSearches.unshift(trimmedTerm);
 
     if (currentSearches.length > 5) {
@@ -65,13 +65,11 @@ export class SearchService {
     let currentCache = this.inputValue.getValue();
 
     currentCache = currentCache.filter(entry => entry.keyword !== keyword);
-
     currentCache.unshift({ keyword, products });
 
     if (currentCache.length > 5) {
       currentCache.pop();
     }
-
     this.inputValue.next(currentCache);
   }
 
