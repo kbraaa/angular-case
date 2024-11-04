@@ -13,10 +13,12 @@ import {HomeModule} from "./page/home/home.module";
 import {ProductDetailModule} from "./components/product-detail/product-detail.module";
 import {ProductSingleModule} from "./page/product-single/product-single.module";
 import {CartModule} from "./page/cart/cart.module";
+import {CursorDirective} from "./directives/cursor.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
+    CursorDirective
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ import {CartModule} from "./page/cart/cart.module";
     CartModule
   ],
   providers: [],
-  exports: [],
+  exports: [CursorDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

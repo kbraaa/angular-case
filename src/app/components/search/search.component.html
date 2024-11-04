@@ -1,6 +1,6 @@
 <section class="searchInput">
   <div>
-    <input [formControl]="inputControl" placeholder="Ürün ara..." />
+    <input [formControl]="inputControl" class="searchArea" placeholder="Ürün ara..." />
   </div>
 
   <ng-container *ngIf="searchResults$ | async as searchResults">
