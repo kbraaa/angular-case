@@ -1,18 +1,17 @@
-import {Directive, ElementRef, EventEmitter, Output, Renderer2} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, Input, Output, Renderer2} from '@angular/core';
 import { SearchService } from '../services/search.service'; // Service'i ekle
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Directive({
   selector: '[appCursor]'
 })
 export class CursorDirective {
   recentSearches$: Observable<string[]>;
-
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
-    private searchService: SearchService
-  ) {
+    private searchService: SearchService,
+   ) {
 
     this.recentSearches$ = this.searchService.getRecentSearches();
 
@@ -22,16 +21,15 @@ export class CursorDirective {
       if (target.className.includes('searchArea')) {
         this.recentSearches$.subscribe(searches => {
           const currentSearchesCount = searches.length;
-          console.log("search alanı içinde");
 
           if(currentSearchesCount > 0) {
-              console.log("Son aramalar true");
+            this.searchService.showPopup = true;
           }else{
-            console.log("Son aramalar false");
-          }
+            this.searchService.showPopup = false;
+           }
         });
       }else{
-        console.log("search alanı dışında");
+        this.searchService.showPopup = false;
       }
     });
   }

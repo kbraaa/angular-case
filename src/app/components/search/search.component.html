@@ -2,28 +2,33 @@
   <div>
     <input [formControl]="inputControl" class="searchArea" placeholder="Ürün ara..." />
   </div>
+  <ng-container *ngIf="showPopup$ | async">
 
   <ng-container *ngIf="searchResults$ | async as searchResults">
-      <mat-card *ngIf="searchResults.length >= 1" class="">
-        <mat-card-content>
-          <div class="searchContent">
-            <div *ngFor="let product of searchResults">
+      <mat-card  class="">
+          <div class="searchContent" *ngIf="searchResults.length >= 1">
+            <div *ngFor="let product of searchResults" >
               <p>
                 <span class="fs-5">{{ product.title }}</span> -
                 <span class="fs-5">{{ product.discountPercentage }} TL</span>
               </p>
             </div>
+          </div>
 
-            <mat-card-footer>
+          <mat-card-footer *ngIf="recentSearches$ | async as recentSearches">
+            <div *ngIf="recentSearches.length >= 1">
               <h3 class="mb-1 fs-4 fw-bold">Son Aramalar</h3>
               <ul>
-                <li *ngFor="let search of recentSearches$ | async" (click)="onSearchClick(search)">
+                <li *ngFor="let search of recentSearches" (click)="onSearchClick(search)">
                   {{ search }}
                 </li>
               </ul>
-            </mat-card-footer>
-          </div>
-        </mat-card-content>
+            </div>
+          </mat-card-footer>
+
+
       </mat-card>
     </ng-container>
+  </ng-container>
+
 </section>

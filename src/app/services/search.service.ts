@@ -18,6 +18,7 @@ export class SearchService {
     new BehaviorSubject<{ keyword: string, products: Product[] }[]>([]);
 
   private recentSearches: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  private showPopupSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {}
 
@@ -47,7 +48,7 @@ export class SearchService {
 
   private updateRecentSearches(searchTerm: string): void {
     const trimmedTerm = searchTerm.trim();
-
+    this.showPopup = true;
     if (!trimmedTerm) return;
 
     let currentSearches = this.recentSearches.getValue();
@@ -63,7 +64,7 @@ export class SearchService {
 
   private updateCache(keyword: string, products: Product[]): void {
     let currentCache = this.inputValue.getValue();
-
+    this.showPopup = true;
     currentCache = currentCache.filter(entry => entry.keyword !== keyword);
     currentCache.unshift({ keyword, products });
 
@@ -74,6 +75,15 @@ export class SearchService {
   }
 
   getRecentSearches(): Observable<string[]> {
+    this.showPopup = true;
     return this.recentSearches.asObservable();
+  }
+
+  get showPopup$(): Observable<boolean> {
+    return this.showPopupSubject.asObservable();
+  }
+
+  set showPopup(value: boolean) {
+    this.showPopupSubject.next(value);
   }
 }
