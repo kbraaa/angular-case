@@ -24,7 +24,9 @@ export class SearchService {
 
   getSearch(keyword: string): Observable<Product[]> {
 
-    if (keyword.length < 3) return of([]);
+    if (keyword.length < 3) {
+      this.showPopup = false;
+    }
     const cachedResult = this.inputValue.getValue()
       .find(entry => entry.keyword === keyword);
 
