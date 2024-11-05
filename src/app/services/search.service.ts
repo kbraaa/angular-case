@@ -26,6 +26,7 @@ export class SearchService {
 
     if (keyword.length < 3) {
       this.showPopup = false;
+      return of([]);
     }
     const cachedResult = this.inputValue.getValue()
       .find(entry => entry.keyword === keyword);
