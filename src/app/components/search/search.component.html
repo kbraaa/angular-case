@@ -1,8 +1,8 @@
 <section class="searchInput">
   <div>
-    <input [formControl]="inputControl" class="searchArea" placeholder="Ürün ara..." />
+    <input [formControl]="inputControl" (focus)="togglePopup()" class="searchArea" placeholder="Ürün ara..." />
   </div>
-  <ng-container *ngIf="showPopup$ | async">
+  <div *ngIf="showPopup$ | async" appCursor (outsideClick)="togglePopup()" >
 
   <ng-container *ngIf="searchResults$ | async as searchResults">
       <mat-card  class="">
@@ -29,6 +29,6 @@
 
       </mat-card>
     </ng-container>
-  </ng-container>
+  </div>
 
 </section>

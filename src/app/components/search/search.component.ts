@@ -40,4 +40,8 @@
     this.searchResults$ = this.searchService.getSearch(searchKeyword);
   }
 
+  togglePopup(): void {
+    this.searchService.showPopup = !this.searchService.showPopup;
+  }
+
 }

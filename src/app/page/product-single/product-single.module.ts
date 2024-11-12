@@ -11,6 +11,9 @@ import {ProductDetailModule} from "../../components/product-detail/product-detai
     CommonModule,
     ProductDetailModule
   ],
+  exports: [
+    ProductSingleComponent
+  ]
 
 })
 export class ProductSingleModule { }

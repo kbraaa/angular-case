@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
+import {CursorModule} from "../../directives/cursor/cursor.module";
 
 
 
@@ -16,7 +17,8 @@ import {MatCardModule} from "@angular/material/card";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    CursorModule,
   ]
 })
 export class SearchModule { }

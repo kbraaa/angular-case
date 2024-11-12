@@ -86,6 +86,10 @@ export class SearchService {
     return this.showPopupSubject.asObservable();
   }
 
+  get showPopup(): boolean {
+    return this.showPopupSubject.getValue();
+  }
+
   set showPopup(value: boolean) {
     this.showPopupSubject.next(value);
   }
